@@ -2,7 +2,7 @@
   <div id="product-list-one">
     <h2>Product List One</h2>
     <ul>
-        <li v-for="product in products">
+        <li v-for="product in saleProducts">
             <span class="name">
                 {{ product.name}}
             </span>
@@ -11,17 +11,28 @@
             </span>
         </li>
     </ul>
+    <button @click="reducePrice">Reduce Price</button>
   </div>
 </template>
 
 <script>
+
 export default {
  computed:{
    products(){
-     return this.$store.state.products
+     return this.$store.state.products;
+   },
+   saleProducts(){
+      return this.$store.getters.saleProducts;
+   }
+ },
+ methods:{
+   reducePrice: function(){
+     this.$store.commit('reducePrice');
+   }
    }
  }
-}
+
 </script>
 
 <style scoped>
